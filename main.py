@@ -1,57 +1,59 @@
-student={
-    101:{
-        "name":"A",
-        "marks":95
-    } ,
-    102:{
-        "name":"B",
-        'marks':90
-    },
-    103:{
-        "name":"C",
-        "marks":80
-    }
-}
-
-
+student={1:{"name":"A",
+                "marks":90}}
+   
+id=2
 while True:
-    option=int(input("\n1.Add student\n2.Display all students Id,names and thier marks\n3.search student\n4.update marks\n5.delete student\n6.exit\nEnter the options above:"))
-    if option==1:
+ try:
+     option=int(input("1.Add Student\n2.Search studen\n3.display students\n4.update student\n5.delete studen\n6.exit\nEnter the option above:"))
+     
+     if option==1:
         name=input("enter the name:")
         marks=int(input("enter the marks:"))
-        ID=int(input("enter the id"))
-        student[ID]={
-
+        student[id]={
             "name":name,
-            "marks": marks
+            "marks":marks
         }
-        
-    elif option ==2:
-        for key,values in student.items():
-            print(key,values["name"],values["marks"])
-        
-    elif option==3:
-        name=input("enter the student name:")
-        for i in student.values():
-            if i["name"]==name:
-                print("Student exits")
+        print(f"{student.items()}\nstudent added sucessfully!")
+        id+=1
+   
+        print("enter valid name")
+ 
+     if option==2:
+    
+        id=int(input("enter the id of student:"))
+        for key in student.keys():
+            if key==id:
+                print("student exists!")
                 break
-        else:     
-            print("Studen doesn't exists")
+        else:
+                print("student doesn't exist!")
+      
+     if option==3:
+  
+      for key,value in student.items():
+        print(key,value["name"],value["marks"])
 
-    elif option==4:
-        name=input("enter the student name:")
-        marks=int(input("enter the studend marks:"))
-        for inner_dict in student.values():
-            if inner_dict["name"]==name:
-                inner_dict["marks"]=marks
-                print("marks updated")
-                print(student)
-           
-    elif option==5:
-        ID=int(input("enter the id of stuent:"))
-        del student[ID]
-        print(student)
-
-    elif option==6:
+     if option==4:
+     
+        id=int(input("enter the student id:"))
+        marks=int(input("enter the marks:"))
+        for key,value in student.items():
+            if key==id:
+                value["marks"]=marks
+                print(f"{student}\nmarks updated sucessfully!")
+       
+     if option ==5:
+        id=int(input("enter the student id:"))
+        if id in student.keys():
+          del student[id]
+          print(f"{student}\nstudend deleted sucesfully!")
+          
+        else:
+            print("id doesnt exits")
+        
+     if option==6:
+        print("application closed!")
         break
+     
+ except ValueError:
+        print("value error! Enter valid inputs values")
